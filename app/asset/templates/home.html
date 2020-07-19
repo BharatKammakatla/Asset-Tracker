@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+    {% block content %}
+
+        <div class="container">
+            <br>
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>Add new Asset</h4>
+                </div>
+                <div class="col-md-6 text-right">
+                    <a class="btn btn-success" href="{{ url_for('main.add_assset') }}" role="button">  Add  </a>
+                </div>
+            </div>
+            <br>
+            <hr>
+            <br>
+            <div class="row">
+                <table class="table table-bordred table-striped table-hover">
+                    <thead class="p-3 mb-2 bg-secondary text-white">
+                        <tr>
+                            <th> ID </th>
+                            <th> Type </th>
+                            <th> Asset Name </th>
+                            <th> Person </th>
+                            <th> Start Time </th>
+                            <th> End Time </th>
+                            <th> Status </th>
+                            <th> Edit </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for transaction in transactions %}
+                            <tr>
+                                <td> {{ transaction.id }} </td>
+                                <td><img src="static/img/{{transaction.type}}.svg" alt="asset-img" height="40" width="40"></td>
+                                <td> {{ transaction.asset_name }} </td>
+                                <td> {{ transaction.person_name }} </td>
+                                <td> {{ transaction.start_time }} </td>
+                                <td> {{ transaction.end_time }} </td>
+                                <td> {{ transaction.status }} </td>
+                                <td>
+                                    <a class="btn btn-light btn-sm" href="{{ url_for('main.edit_asset', id=transaction.id) }}" role="button">
+                                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    {% endblock %}

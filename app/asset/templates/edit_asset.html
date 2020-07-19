@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="container">
+        <h4 style="margin-left: 45px"> Edit Asset </h4>
+        <hr>
+            {{ form.hidden_tag() }}
+            {{ render_form(form) }}
+    </div>
+
+{% endblock %}
