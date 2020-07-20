@@ -23,5 +23,5 @@ class AddAssetForm(FlaskForm):
     end_time = HiddenField('End Time')
     #status = StringField('Status', validators=[DataRequired()])
     #status = RadioField('Status', choices=[('In Use', 'In Use'), ('In Store', 'In Store')], validators=[DataRequired()])
-    status = SelectField('Status', validators=[DataRequired()], choices=[('in_use', 'In Use')])
+    status = SelectField('Status', validators=[DataRequired()], choices=[('In Use', 'In Use'), ('In Store', 'In Store')])
     submit = SubmitField('Add')

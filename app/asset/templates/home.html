@@ -9,7 +9,7 @@
                     <h4>Add new Asset</h4>
                 </div>
                 <div class="col-md-6 text-right">
-                    <a class="btn btn-success" href="{{ url_for('main.add_assset') }}" role="button">  Add  </a>
+                    <a class="btn btn-primary" href="{{ url_for('main.add_assset') }}" role="button">  Add  </a>
                 </div>
             </div>
             <br>
@@ -38,7 +38,12 @@
                                 <td> {{ transaction.person_name }} </td>
                                 <td> {{ transaction.start_time }} </td>
                                 <td> {{ transaction.end_time }} </td>
-                                <td> {{ transaction.status }} </td>
+                                <td> {% if transaction.status == 'In Use' %}
+                                        <span class="label label-warning">Using</span>
+                                     {% else %}
+                                        <span class="label label-success">Store</span>
+                                     {% endif %}
+                                </td>
                                 <td>
                                     <a class="btn btn-light btn-sm" href="{{ url_for('main.edit_asset', id=transaction.id) }}" role="button">
                                         <i class="fa fa-pencil" aria-hidden="true"></i>
