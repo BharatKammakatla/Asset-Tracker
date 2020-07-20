@@ -2,7 +2,7 @@ from app import create_app, db
 from app.auth.models import User
 
 if __name__ == '__main__':
-    flask_app = create_app('dev')
+    flask_app = create_app('prod')
     with flask_app.app_context():
         db.create_all()
         # create default user (if not created)
