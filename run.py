@@ -9,4 +9,4 @@ with flask_app.app_context():
         User.create_user(user='admin',
                          email='admin@user.com',
                          password='secret')
-    flask_app.run()
+        flask_app.run()
