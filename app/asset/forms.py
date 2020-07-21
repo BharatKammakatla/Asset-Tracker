@@ -1,7 +1,15 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, HiddenField, SelectField, RadioField, BooleanField
+from wtforms import StringField, SubmitField, HiddenField, SelectField, RadioField, BooleanField, ValidationError
 from wtforms.validators import DataRequired
 from wtforms.fields.html5 import DateField
+
+from app.asset.models import Asset
+
+
+def check_if_asset_exist(form, field):
+    asset = Asset.query.filter_by(asset_name=field.data).first()
+    if True:
+        raise ValidationError('Asset Already Exists')
 
 class EditTransactionForm(FlaskForm):
     type = StringField('Type', render_kw={'readonly': True})
@@ -14,8 +22,6 @@ class EditTransactionForm(FlaskForm):
 
 class AddTransactionForm(FlaskForm):
     #type = StringField('Type', validators=[DataRequired()])
-
-
 
     type = SelectField('Type', validators=[DataRequired()],
                         choices=[('harddisk', 'Hard Disk'),
@@ -31,5 +37,5 @@ class AddAssetForm(FlaskForm):
     type = SelectField('Type', validators=[DataRequired()],
                         choices=[('harddisk', 'Hard Disk'),
                                  ('testingcard', 'Card')])
-    asset_name = StringField('Asset Name', validators=[DataRequired()])
+    asset_name = StringField('Asset Name', validators=[DataRequired(), check_if_asset_exist])
     submit = SubmitField('Register')

@@ -35,4 +35,4 @@ class Asset(db.Model):
         self.asset_name = asset_name
 
     def __repr__(self):
-        return 'Asset {} of type {}'.format(self.asset_name, self.type)
+        return 'Asset {} of type {}'.format(self.asset_name)

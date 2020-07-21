@@ -29,6 +29,9 @@ def add_asset():
 @main.route('/add/transaction', methods=['GET', 'POST'])
 @login_required
 def add_transaction():
+
+    available_assets = Asset.query.all()
+
     form = AddTransactionForm()
     if form.validate_on_submit():
         transaction = Transaction(type=form.type.data, asset_name=form.asset_name.data, person_name=form.person_name.data,
@@ -37,7 +40,7 @@ def add_transaction():
         db.session.commit()
         flash('Asset added successfully')
         return redirect(url_for('main.display_transactions'))
-    return render_template('add_transaction.html', form=form)
+    return render_template('add_transaction.html', form=form, available_assets=available_assets)
 
 
 @main.route('/edit/transaction/<id>', methods=['GET', 'POST'])
