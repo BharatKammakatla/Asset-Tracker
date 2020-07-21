@@ -22,3 +22,17 @@ class Transaction(db.Model):
 
     def __repr__(self):
         return '{} by {}'.format(self.asset_name, self.person_name)
+
+class Asset(db.Model):
+    __tablename__ = 'assets'
+
+    id = db.Column(db.Integer, primary_key=True)
+    type = db.Column(db.String(100), nullable=False)
+    asset_name = db.Column(db.String(100), nullable=False, index=True)
+
+    def __init__(self, type, asset_name):
+        self.type = type
+        self.asset_name = asset_name
+
+    def __repr__(self):
+        return 'Asset {} of type {}'.format(self.asset_name, self.type)
