@@ -3,4 +3,3 @@
 
 ![](AssetTracker.gif)
 
-Click to view live site: **[https://asset-log.herokuapp.com/](https://asset-log.herokuapp.com/)**
