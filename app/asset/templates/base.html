@@ -1,77 +1,113 @@
-{% import "bootstrap/wtf.html" as wtf %}
+{% from 'bootstrap/form.html' import render_form, render_field %}
 
 <!DOCTYPE html>
 <html lang="en">
 
-    {# head #}
+{# head #}
+
+<head>
     {% block head %}
-        <head>
-            <title> Asset Tracker </title>
-            <meta charset="UTF-8">
-            <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">-->
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-            <link href="https://fonts.googleapis.com/css?family=Sansita" rel="stylesheet">
-            <link rel="stylesheet" href="{{ url_for('static', filename = 'css/styles.css') }}">
-        </head>
-    {% endblock head %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {% block styles %}
+    <!-- Bootstrap CSS -->
+    {{ bootstrap.load_css() }}
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/styles.css') }}">
 
-    {# body #}
-    {% block body %}
-    <body>
-    <div class="wrapper">
-        {# navigation bar #}
-        {% block navbar %}
-            <nav class="navbar navbar-inverse">
-                <div class="container">
-                    <a class="navbar navbar-text" href="{{ url_for('main.display_transactions') }}">
-                        <h3 class="title"> Asset Tracker </h3>
+    {% endblock %}
+    <title> Asset Tracker </title>
+    {% endblock %}
+</head>
+
+{# body #}
+<body>
+{# navigation bar #}
+{% block navbar %}
+<div class="container-fluid my-nav-container navbar-dark sticky-top p-2">
+    <div class="container">
+        <nav class="navbar navbar-expand-md">
+            <a href="{{ url_for('main.display_transactions') }}" class="navbar-brand my-logo-text">Asset Tracker</a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav ml-auto">
+                    <a href="{{ url_for('main.display_transactions') }}" class="nav-item nav-link"> Home </a>
+                    <a href=" {{ url_for('authentication.register_user') }} " class="nav-item nav-link">
+                        Register </a>
+                    {% if current_user.is_authenticated %}
+                    <a href=" {{ url_for('authentication.do_logout') }} " class="nav-item nav-link"> LogOut </a>
+                    {% else %}
+                    <a href=" {{ url_for('authentication.do_login') }} " class="nav-item nav-link"> LogIn </a>
+                    {% endif %}
+                    <a href="" class="nav-item nav-link">
+                        {% if current_user.is_authenticated %}
+                        Logged In as {{ current_user.user_name.title() }}
+                        {% else %}
+                        Not Logged In
+                        {% endif %}
                     </a>
-                    <ul class="nav navbar-nav pull-right">
-                        <li><a href="{{ url_for('main.display_transactions') }}"> Home </a></li>
-                        <li><a href=" {{ url_for('authentication.register_user') }} "> Register </a></li>
-                        <li>{% if current_user.is_authenticated %}
-                                <a href=" {{ url_for('authentication.do_logout') }} "> LogOut </a>
-                            {% else %}
-                                <a href=" {{ url_for('authentication.do_login') }} "> LogIn </a>
-                            {% endif %}
-                        </li>
-                        <li>
-                            <a href="">
-                                {% if current_user.is_authenticated %}
-                                    Logged In as {{ current_user.user_name.title() }}
-                                {% else %}
-                                    Not Logged In
-                                {% endif %}
-                            </a>
-                        </li>
-                    </ul>
                 </div>
-            </nav>
-        {% endblock navbar %}
+            </div>
+        </nav>
+    </div>
+</div>
+{% endblock %}
 
-        {# flash messaging #}
-        {% for message in get_flashed_messages() %}
-                <div class=" container alert alert-info">
-                    <button type="button" class="close" data-dismiss="alert"></button>
-                    {{ message }}
-                </div>
-        {% endfor %}
+{# flash messaging #}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            {% for message in get_flashed_messages() %}
+            <div class=" container alert alert-info my-flash-class">
+                <button type="button" class="close" data-dismiss="alert"></button>
+                {{ message }}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
 
-        {# empty block for custom content #}
-        {% block content %} {% endblock content %}
 
-        {# footer #}
-        {% block footer %}
-            <footer>
-                <div class="container ftr">
-                    <hr>
-                    <p class="text-center small">Developer@Bharat , &copy;  |  2020</p>
+{# empty block for custom content #}
+{% block content %} {% endblock content %}
+
+
+{# footer #}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            {% block footer %}
+            <footer class="page-footer font-small blue pt-4">
+                <div class="footer-copyright text-center py-3">© 2020 Copyright |
+                    <a href="https://bharatkammakatla.com/"> Bharat Kammakatla </a>
                 </div>
             </footer>
-        {% endblock footer %}
-
+            {% endblock %}
+        </div>
     </div>
-    </body>
-    {% endblock body %}
+</div>
+
+
+{# optional scripts #}
+{% block scripts %}
+<!-- Optional JavaScript -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+{{ bootstrap.load_js() }}
+{% endblock %}
+
+</body>
 </html>
