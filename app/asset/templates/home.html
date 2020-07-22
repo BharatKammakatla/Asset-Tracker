@@ -3,74 +3,68 @@
 {% block content %}
 
 <div class="container">
-    <br>
     <div class="row">
-        <div class="col-md-6">
-            <h4>Register New Asset</h4>
+        <div class="col-12 col-md-6">
+            <div class="card shadow-lg my-2">
+                <div class="card-body bg-light">
+                    <b>Register new Asset</b>
+                    <a href="{{ url_for('main.add_asset') }}" class="btn btn-success pull-right">Register</a>
+                </div>
+            </div>
         </div>
-        <div class="col-md-6 text-right">
-            <a class="btn btn-primary" href="{{ url_for('main.add_asset') }}" role="button"> Register </a>
+        <div class="col-12 col-md-6">
+            <div class="card shadow-lg my-2">
+                <div class="card-body bg-light">
+                    <b>Add new Requset</b>
+                    <a href="{{ url_for('main.add_transaction') }}" class="btn btn-success pull-right">Add</a>
+                </div>
+            </div>
         </div>
     </div>
-    <br>
-    <hr>
-    <br>
     <div class="row">
-        <div class="col-md-6">
-            <h4>Add New Request</h4>
+        <div class="col-12 my-2">
+            <h5>View / Edit existing Requests</h5>
         </div>
-        <div class="col-md-6 text-right">
-            <a class="btn btn-primary" href="{{ url_for('main.add_transaction') }}" role="button"> Add </a>
+        <div class="table-responsive shadow-lg">
+            <table class="table table-striped table-hover">
+                <thead class="p-3 mb-2 bg-secondary text-white">
+                <tr>
+                    <th> ID</th>
+                    <th> Type</th>
+                    <th> Asset Name</th>
+                    <th> Person</th>
+                    <th> Start Time</th>
+                    <th> End Time</th>
+                    <th> Status</th>
+                    <th> Edit</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for transaction in transactions %}
+                <tr>
+                    <td> {{ transaction.id }}</td>
+                    <td><img src="static/img/{{transaction.type}}.svg" alt="asset-img" height="40" width="40"></td>
+                    <td> {{ transaction.asset_name }}</td>
+                    <td> {{ transaction.person_name }}</td>
+                    <td> {{ transaction.start_time }}</td>
+                    <td> {{ transaction.end_time }}</td>
+                    <td> {% if transaction.status == 'In Use' %}
+                        <span class="label label-warning">Using</span>
+                        {% else %}
+                        <span class="label label-success">Store</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a class="btn btn-light btn-sm" href="{{ url_for('main.edit_transaction', id=transaction.id) }}"
+                           role="button">
+                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
         </div>
-    </div>
-    <br>
-    <hr>
-    <br>
-    <div class="row">
-        <div class="col-md-6">
-            <h4>View / Edit existing Request</h4>
-        </div>
-        <br>
-        <br>
-        <br>
-        <table class="table table-striped table-hover">
-            <thead class="p-3 mb-2 bg-secondary text-white">
-            <tr>
-                <th> ID</th>
-                <th> Type</th>
-                <th> Asset Name</th>
-                <th> Person</th>
-                <th> Start Time</th>
-                <th> End Time</th>
-                <th> Status</th>
-                <th> Edit</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for transaction in transactions %}
-            <tr>
-                <td> {{ transaction.id }}</td>
-                <td><img src="static/img/{{transaction.type}}.svg" alt="asset-img" height="40" width="40"></td>
-                <td> {{ transaction.asset_name }}</td>
-                <td> {{ transaction.person_name }}</td>
-                <td> {{ transaction.start_time }}</td>
-                <td> {{ transaction.end_time }}</td>
-                <td> {% if transaction.status == 'In Use' %}
-                    <span class="label label-warning">Using</span>
-                    {% else %}
-                    <span class="label label-success">Store</span>
-                    {% endif %}
-                </td>
-                <td>
-                    <a class="btn btn-light btn-sm" href="{{ url_for('main.edit_transaction', id=transaction.id) }}"
-                       role="button">
-                        <i class="fa fa-pencil" aria-hidden="true"></i>
-                    </a>
-                </td>
-            </tr>
-            {% endfor %}
-            </tbody>
-        </table>
     </div>
 </div>
 
