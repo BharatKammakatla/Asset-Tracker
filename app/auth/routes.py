@@ -48,6 +48,7 @@ def do_login():
 @login_required
 def do_logout():
     logout_user()
+    flash('Logged out successfully.')
     return redirect(url_for('main.display_transactions'))
 
 @at.app_errorhandler(404)
