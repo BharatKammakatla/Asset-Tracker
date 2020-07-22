@@ -1,12 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-    <div class="container">
-        <h4 style="margin-left: 45px"> Register new Asset </h4>
-        <hr>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h4> Register new Asset </h4>
+            <br>
             {{ form.hidden_tag() }}
             {{ render_form(form) }}
+        </div>
     </div>
 
+</div>
 {% endblock %}

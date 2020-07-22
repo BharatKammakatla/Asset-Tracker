@@ -1,9 +1,8 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <br>
     <div class="container" style="margin-left: 16%">
         <h4>Sorry, the page you are looking could not be found ...</h4><br>
-        <span class="label label-primary"><a href="{{ url_for('main.display_transactions') }}" style="color: floralwhite"> Back To Home </a></span>
+        <span class="badge badge-primary"><a href="{{ url_for('main.display_transactions') }}" style="color: floralwhite"> Back To Home </a></span>
     </div>
 {% endblock %}

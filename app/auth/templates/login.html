@@ -1,16 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-    <div class="container form">
-        <h4 class="form">LogIn Here</h4>
-        <hr>
-        <br>
-
-        {{ form.hidden_tag() }}
-
-        {{ render_form(form) }}
-
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h4> Login Here </h4>
+            <br>
+            {{ form.hidden_tag() }}
+            {{ render_form(form) }}
+        </div>
     </div>
 
+</div>
 {% endblock %}
