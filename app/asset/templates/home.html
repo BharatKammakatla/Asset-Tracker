@@ -5,16 +5,16 @@
 <div class="container">
     <div class="row">
         <div class="col-12 col-md-6">
-            <div class="card shadow-lg my-2">
-                <div class="card-body bg-light">
+            <div class="panel panel-default">
+                <div class="panel-body bg-light">
                     <b>Register new Asset</b>
                     <a href="{{ url_for('main.add_asset') }}" class="btn btn-info pull-right">Register</a>
                 </div>
             </div>
         </div>
         <div class="col-12 col-md-6">
-            <div class="card shadow-lg my-2">
-                <div class="card-body bg-light">
+            <div class="panel panel-default">
+                <div class="panel-body bg-light">
                     <b>Add new Requset</b>
                     <a href="{{ url_for('main.add_transaction') }}" class="btn btn-info pull-right">Add</a>
                 </div>
@@ -50,9 +50,9 @@
                         <td> {{ transaction.start_time }}</td>
                         <td> {{ transaction.end_time }}</td>
                         <td> {% if transaction.status == 'In Use' %}
-                            <span class="badge badge-warning">Using</span>
+                            <span class="label label-warning">Using</span>
                             {% else %}
-                            <span class="badge badge-success">Store</span>
+                            <span class="label label-success">Store</span>
                             {% endif %}
                         </td>
                         <td>

@@ -1,15 +1,10 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container">
-    <div class="row">
-        <div class="col">
-            <h4> Login Here </h4>
-            <br>
-            {{ form.hidden_tag() }}
-            {{ render_form(form) }}
-        </div>
+    <div class="container">
+        <h4 style="margin-left: 45px"> Login Here </h4>
+        <hr>
+          {{ form.hidden_tag() }}
+          {{ wtf.quick_form(form) }}
     </div>
-
-</div>
 {% endblock %}
