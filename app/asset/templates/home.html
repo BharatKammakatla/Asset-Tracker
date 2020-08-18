@@ -4,16 +4,16 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-12 col-md-6">
-            <div class="card text-left">
+        <div class="col-12 col-md-6 my-2">
+            <div class="shadow-lg rounded card text-left">
                 <div class="card-body bg-light">
                     <b>Register new Asset</b>
                     <a href="{{ url_for('main.add_asset') }}" class="btn btn-info pull-right">Register</a>
                 </div>
             </div>
         </div>
-        <div class="col-12 col-md-6">
-            <div class="card text-left">
+        <div class="col-12 col-md-6 my-2">
+            <div class="shadow-lg rounded card text-left">
                 <div class="card-body bg-light">
                     <b>Add new Requset</b>
                     <a href="{{ url_for('main.add_transaction') }}" class="btn btn-info pull-right">Add</a>
@@ -22,14 +22,14 @@
         </div>
     </div>
     <div class="row">
-        <div class="col">
-            <h5>View / Edit existing Requests</h5>
+        <div class="col my-2">
+            <h6 class="font-weight-bold">View / Edit existing Requests</h6>
         </div>
-        <div class="col col-md-12">
+        <div class="col col-md-12 my-2">
             <div class="table-responsive">
                 <table class="table table-striped table-hover">
-                    <thead >
-                        <tr class="bg-secondary">
+                    <thead class="thead-light">
+                        <tr style="background-color: #e3f2fd;">
                             <th> ID</th>
                             <th> Type</th>
                             <th> Asset Name</th>
@@ -44,7 +44,7 @@
                     {% for transaction in transactions %}
                     <tr>
                         <td> {{ transaction.id }}</td>
-                        <td><img src="static/img/{{transaction.type}}.svg" alt="asset-img" height="40" width="40"></td>
+                        <td><img src="static/img/{{transaction.type}}.svg" alt="asset-img" height="30" width="30"></td>
                         <td> {{ transaction.asset_name }}</td>
                         <td> {{ transaction.person_name }}</td>
                         <td> {{ transaction.start_time }}</td>

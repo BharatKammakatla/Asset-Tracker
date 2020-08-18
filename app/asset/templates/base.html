@@ -17,7 +17,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type= "text/css" href="{{ url_for('static', filename = 'css/styles.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'css/styles.css') }}">
     <link rel="icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
     {{ bootstrap.load_css() }}
     {% endblock %}
@@ -26,46 +26,49 @@
 
 {# body #}
 <body>
-{# navigation bar #}
-{% block navbar %}
-<nav class="navbar navbar-expand-lg navbar-dark">
-    <div class="container my-2">
-        <a href="{{ url_for('main.display_transactions') }}" class="navbar-brand title">Asset Tracker</a>
-        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a href="{{ url_for('main.display_transactions') }}" class="nav-link"> Home </a>
-                </li>
-                <li class="nav-item">
-                    <a href=" {{ url_for('authentication.register_user') }} " class="nav-link">
-                        Register </a>
-                </li>
-                {% if current_user.is_authenticated %}
-                <li class="nav-item">
-                    <a href=" {{ url_for('authentication.do_logout') }} " class="nav-item nav-link"> LogOut </a>
-                </li>
-                {% else %}
-                <li class="nav-item">
-                    <a href=" {{ url_for('authentication.do_login') }} " class="nav-item nav-link"> LogIn </a>
-                </li>
-                {% endif %}
-                <li class="nav-item">
-                    <a href="" class="nav-item nav-link">
-                        {% if current_user.is_authenticated %}
-                        Logged In as {{ current_user.user_name.title() }}
-                        {% else %}
-                        Not Logged In
-                        {% endif %}
-                    </a>
-                </li>
-            </ul>
+<div class="content">
+    {# navigation bar #}
+    {% block navbar %}
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top py-4">
+        <div class="container">
+            <a href="{{ url_for('main.display_transactions') }}" class="navbar-brand"><span
+                    class="title">Asset Tracker</span> <i class="fas fa-database" style="padding: 3px"></i></a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a href="{{ url_for('main.display_transactions') }}" class="nav-link"> Home </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href=" {{ url_for('authentication.register_user') }} " class="nav-link">
+                            Register </a>
+                    </li>
+                    {% if current_user.is_authenticated %}
+                    <li class="nav-item">
+                        <a href=" {{ url_for('authentication.do_logout') }} " class="nav-item nav-link"> LogOut </a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a href=" {{ url_for('authentication.do_login') }} " class="nav-item nav-link"> LogIn </a>
+                    </li>
+                    {% endif %}
+                    <li class="nav-item">
+                        <a href="" class="nav-item nav-link">
+                            {% if current_user.is_authenticated %}
+                            Logged In as {{ current_user.user_name.title() }}
+                            {% else %}
+                            Not Logged In
+                            {% endif %}
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
+</div>
 
 {% endblock %}
 
@@ -86,12 +89,12 @@
 
 {# empty block for custom content #}
 {% block content %} {% endblock content %}
-
+<div class="spacer"></div>
 
 {% block footer %}
-<footer id="sticky-footer" class="py-4">
+<footer class="footer">
     <div class="container text-center">
-        <a target="_blank" href="https://github.com/BharatKammakatla/Sentiment-Analysis_Restaurant-Reviews"><i
+        <a target="_blank" href="https://github.com/BharatKammakatla/Asset-Tracker"><i
                 class="fab fa-github fa-lg contact-icon"></i></a>
         <a target="_blank" href="https://www.linkedin.com/in/bharatkammakatla"><i
                 class="fab fa-linkedin fa-lg contact-icon"></i></a>
@@ -117,6 +120,7 @@
         integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
         crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/5f3f547070.js" crossorigin="anonymous"></script>
+<script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
 {{ bootstrap.load_js() }}
 {% endblock %}
 </body>

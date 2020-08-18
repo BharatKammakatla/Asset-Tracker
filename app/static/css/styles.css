@@ -1,17 +1,24 @@
-html, body {height: 100%; margin: 0; padding: 0}
+html, body {margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-size: small}
 p, li { font-size: small }
-footer{ position: absolute; width: 100%; left:0 ;bottom: 0; height: 40px }
 span {margin: 2px}
-.navbar {background-color: black}
-.books {padding: 25px; position: relative; left: 5%; width: 80%}
-.publisher {padding: 25px; position: relative; left: 40px }
-.ftr {padding: 25px}
-.wrapper {position: relative; min-height: 120%;}
-.title { color: floralwhite; font-family: 'Abril Fatface', cursive; font-size: 45px}
+.navbar {background-color: black; margin-bottom: 3px}
+.title { color: floralwhite; font-family: 'Abril Fatface', cursive; font-size: 20px}
 .form { height: 50%; width:70%; padding: 10px; position: relative; left: 48px}
 .form-group {width: 40%}
 .login-msg{position: relative; left: 48px}
 .img-class{
 width:40px;
 height:40px
+}
+.spacer {
+    flex: 1;
+}
+.footer {
+    padding: 10px;
+    width: 100%;
+
 }
