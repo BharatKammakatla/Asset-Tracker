@@ -2,7 +2,7 @@ html, body {height: 100%; margin: 0; padding: 0}
 p, li { font-size: small }
 footer{ position: absolute; width: 100%; left:0 ;bottom: 0; height: 40px }
 span {margin: 2px}
-.navbar-inverse {padding: 10px}
+.navbar-inverse {padding: 10px; background-color: black}
 .books {padding: 25px; position: relative; left: 5%; width: 80%}
 .publisher {padding: 25px; position: relative; left: 40px }
 .ftr {padding: 25px}
