@@ -7,8 +7,7 @@ from flask_bootstrap import Bootstrap
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 
-app = Flask(__name__)
-bootstrap = Bootstrap(app)
+
 db = SQLAlchemy()
 bcrypt = Bcrypt()
 login_manager = LoginManager()
@@ -17,7 +16,8 @@ login_manager.session_protection = 'strong'
 
 def create_app(config_type):    #dev, test, prod
 
-
+    app = Flask(__name__)
+    bootstrap = Bootstrap(app)
     configuration = os.path.join(os.getcwd(), 'config', config_type+'.py')
     app.config.from_pyfile(configuration)
 
